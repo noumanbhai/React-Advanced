@@ -4,11 +4,13 @@ import React,  {useState}  from 'react';
   let title='This is React cource';
 
 const ErrorExample = () => {
+
 const [txt, settxt] = useState(1);
 
-
 const changeTitle= () =>{
+
 // alert(title);
+
 settxt(txt+1)
  
 }
