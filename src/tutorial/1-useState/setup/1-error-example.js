@@ -1,10 +1,24 @@
-import React from 'react';
+import React,  {useState}  from 'react';
+
+
+  let title='This is React cource';
 
 const ErrorExample = () => {
-  let title='This is React cource';
+const [txt, settxt] = useState(title);
+
+
+const changeTitle= () =>{
+// alert(title);
+settxt('mmmmmm');
+ 
+}
+
+
   return (
     <div>
-  <h1>{title}</h1></div>
-  )};
+  <h1>{txt}</h1>
+  <button className='btn' onClick={changeTitle}>Change title</button>
+
+  </div>)};
 
 export default ErrorExample;
