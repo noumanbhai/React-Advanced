@@ -6,8 +6,10 @@ const UseEffectBasics = () => {
   const [count, setcount] = useState(0);
   useEffect(() => {
     console.log("First");
-    document.title = `${count}`;
-  });
+    if (count >= 1) {
+      document.title = `${count}`;
+    }
+  }, [count + 2]);
   console.log("lst");
   return (
     <>
