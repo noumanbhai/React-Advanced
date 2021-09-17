@@ -16,10 +16,20 @@ const ShowHide = () => {
 };
 
 const Item = () => {
+  const [size, setsize] = useState(window.innerWidth);
+  const checkSize = () => {
+    setsize(window.innerWidth);
+  };
+  useEffect(() => {
+    window.addEventListener("size", checkSize);
+    return () => {
+      window.removeEventListener("size", checkSize);
+    };
+  }, []);
   return (
     <div>
       <h1 style={{ color: "red" }}>Window</h1>
-      <h1 style={{ color: "Blue" }}>Size</h1>
+      <h1 style={{ color: "Blue" }}>{size}</h1>
     </div>
   );
 };
