@@ -3,7 +3,7 @@ import React, { useState } from "react";
 // ternary operator
 
 const ShortCircuit = () => {
-  const name = "Salman";
+  const name = "";
   const [text, settext] = useState(name);
   // console.log(text);
   // const firstVlue = text || "This is first value";
@@ -16,6 +16,7 @@ const ShortCircuit = () => {
       {/* <h3>value1:{firstVlue}</h3>
       <h3>value2:{secndValue}</h3> */}
       <h3>{text || "Enter your name:"}</h3>
+      <h3>{!text && "Hello:"}</h3>
     </div>
   );
 };
