@@ -7,34 +7,22 @@ import React, { useState } from "react";
 // dynamic object keys
 
 const ControlledInputs = () => {
-  const [firstName, setFirstName] = useState("");
-  const [email, setEmail] = useState("");
-  const [age, setAge] = useState("");
-  const [option, setOption] = useState("male");
-  const [dropdown, setDropdown] = useState("");
-  // const [bick, setBick] = useState("");
-  const [people, setPeople] = useState({
-    firstName: "",
-    email: "",
-    age: "",
-    option: "",
-    dropdown: "",
-  });
+  const [person, setPerson] = useState({ firstName: "", email: "", age: "" });
+  const [people, setPeople] = useState([]);
+  const handleChange = (e) => {
+    const name = e.target.name;
+    const value = e.target.value;
+    setPerson({ ...person, [name]: value });
+  };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (person.firstName && person.email && person.age) {
+      const newPerson = { ...person, id: new Date().getTime().toString() };
+      setPeople([...people, newPerson]);
+      setPerson({ firstName: "", email: "", age: "" });
+    }
+  };
 
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   if (firstName && email) {
-  //     const person = { id: new Date().getTime().toString(), firstName, email };
-  //     console.log(person);
-  //     setPeople((people) => {
-  //       return [...people, person];
-  //     });
-  //     setFirstName("");
-  //     setEmail("");
-  //   } else {
-  //     console.log("empty values");
-  //   }
-  // };
   return (
     <>
       <article>
@@ -45,8 +33,8 @@ const ControlledInputs = () => {
               type="text"
               id="firstName"
               name="firstName"
-              value={firstName}
-              onChange={(e) => setFirstName(e.target.value)}
+              value={person.firstName}
+              onChange={handleChange}
             />
           </div>
           <div className="form-control">
@@ -55,78 +43,26 @@ const ControlledInputs = () => {
               type="email"
               id="email"
               name="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
-          </div>
-          <div className="form-control">
-            <label htmlFor="male">Male</label>
-            <input
-              type="radio"
-              id="male"
-              name="name"
-              value={option}
-              onChange={(e) => setOption(e.target.checked)}
-              checked={true}
-            />
-            <label htmlFor="female">Female</label>
-            <input
-              type="radio"
-              id="female"
-              name="name"
-              value={option}
-              onChange={(e) => setOption(e.target.checked)}
+              value={person.email}
+              onChange={handleChange}
             />
           </div>
           <div className="form-control">
             <label htmlFor="age">Age : </label>
             <input
-              type="number"
+              type="text"
               id="age"
               name="age"
-              value={age}
-              onChange={(e) => setAge(e.target.value)}
+              value={person.age}
+              onChange={handleChange}
             />
           </div>
-          <div className="form-control">
-            <label htmlFor="books">Books:</label>
-            <select
-              name="cars"
-              id="books"
-              defaultValue={dropdown}
-              onChange={
-                (e) => setDropdown(e.target.value)
-                // console.log(e.target.value)
-              }
-            >
-              <option value="">-----CHOOSE-------</option>
-              <option value="HTML">HTML</option>
-              <option value="PHP">PHP</option>
-              <option value="CSS">CSS</option>
-              <option value="Jvascript">Jvascript</option>
-            </select>
-          </div>
-          <div className="form-control">
-            <label htmlFor="books">I have a bike</label>
-            <input
-              type="checkbox"
-              id="vehicle1"
-              name="vehicle1"
-              value="Bike"
-              onChange={(e) => setDropdown(e.target.checked)}
-            />
-            <input
-              type="checkbox"
-              id="vehicle1"
-              name="vehicle1"
-              value="Bike"
-              onChange={(e) => setDropdown(e.target.checked)}
-            />
-          </div>
-          <button type="submit">add person</button>
+          <button type="submit" onClick={handleSubmit}>
+            add person
+          </button>
         </form>
         {people.map((person, index) => {
-          const { id, firstName, email } = person;
+          const { id, firstName, email, age } = person;
           return (
             <div className="item" key={id}>
               <h4>{firstName}</h4>
