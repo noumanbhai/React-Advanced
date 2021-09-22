@@ -13,12 +13,16 @@ const ControlledInputs = () => {
     const name = e.target.name;
     const value = e.target.value;
     setPerson({ ...person, [name]: value });
+    console.log("setPerson", setPerson);
+    console.log("person", person);
+    // console.log(newPerson);
   };
   const handleSubmit = (e) => {
     e.preventDefault();
     if (person.firstName && person.email && person.age) {
       const newPerson = { ...person, id: new Date().getTime().toString() };
       setPeople([...people, newPerson]);
+      console.log(newPerson);
       setPerson({ firstName: "", email: "", age: "" });
     }
   };
@@ -67,6 +71,7 @@ const ControlledInputs = () => {
             <div className="item" key={id}>
               <h4>{firstName}</h4>
               <p>{email}</p>
+              <p>{age}</p>
             </div>
           );
         })}
