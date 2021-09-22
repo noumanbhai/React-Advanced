@@ -5,9 +5,9 @@ import { data } from "../../../data";
 // fix - context api, redux (for more complex cases)
 
 const PropDrilling = () => {
-  const [people, setpeople] = useState(data);
+  const [people, setPeople] = useState(data);
   const removePerson = (id) => {
-    setpeople((people) => {
+    setPeople((people) => {
       return people.filter((person) => person.id !== id);
     });
   };
@@ -26,7 +26,7 @@ const List = ({ people, removePerson }) => {
           <SilglePerson
             key={person.id}
             {...person}
-            removePerson={SilglePerson}
+            removePerson={removePerson}
           />
         );
       })}
