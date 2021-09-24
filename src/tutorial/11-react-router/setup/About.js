@@ -1,9 +1,10 @@
-import React from 'react';
+import React from "react";
 
 const About = () => {
   return (
     <div>
       <h1>About Page</h1>
+      <p>This is a about page</p>
     </div>
   );
 };
